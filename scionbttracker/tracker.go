@@ -6,11 +6,11 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/Sirupsen/logrus"
-	"github.com/crosbymichael/tracker/registry"
-	"github.com/crosbymichael/tracker/registry/inmem"
-	"github.com/crosbymichael/tracker/registry/redis"
-	"github.com/crosbymichael/tracker/server"
+	"github.com/sirupsen/logrus"
+	"gitlab.com/clemens97/scionbttracker/registry"
+	"gitlab.com/clemens97/scionbttracker/registry/inmem"
+	"gitlab.com/clemens97/scionbttracker/registry/redis"
+	"gitlab.com/clemens97/scionbttracker/server"
 )
 
 var (

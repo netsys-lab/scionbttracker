@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/crosbymichael/tracker/peer"
-	"github.com/crosbymichael/tracker/registry"
 	"github.com/garyburd/redigo/redis"
+	"gitlab.com/clemens97/scionbttracker/peer"
+	"gitlab.com/clemens97/scionbttracker/registry"
 )
 
 type RedisRegistry struct {
