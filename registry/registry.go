@@ -1,7 +1,7 @@
 package registry
 
 import (
-	"github.com/crosbymichael/tracker/peer"
+	"gitlab.com/clemens97/scionbttracker/peer"
 )
 
 // Registry impements a persistent store for peers in the tracker

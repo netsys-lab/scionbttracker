@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Sirupsen/logrus"
-	"github.com/crosbymichael/tracker/peer"
-	"github.com/crosbymichael/tracker/registry"
+	"github.com/sirupsen/logrus"
+	"gitlab.com/clemens97/scionbttracker/peer"
+	"gitlab.com/clemens97/scionbttracker/registry"
 )
 
 const bencodingFormat = "d8:intervali%de12:min intervali%de8:completei%de10:incompletei%de5:peersl%see"
