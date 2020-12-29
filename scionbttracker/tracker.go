@@ -2,15 +2,13 @@ package main
 
 import (
 	"flag"
-	"log"
-	"net/http"
-	"sync"
-
+	"github.com/netsec-ethz/scion-apps/pkg/shttp"
 	"github.com/sirupsen/logrus"
 	"gitlab.com/clemens97/scionbttracker/registry"
 	"gitlab.com/clemens97/scionbttracker/registry/inmem"
 	"gitlab.com/clemens97/scionbttracker/registry/redis"
 	"gitlab.com/clemens97/scionbttracker/server"
+	"log"
 )
 
 var (
@@ -20,15 +18,13 @@ var (
 	flMinInterval = flag.Int("min-interval", 30, "min poll interval for new peers")
 	flRedisAddr   = flag.String("redis-addr", "", "address to a redis server for persistent peer data")
 	flRedisPass   = flag.String("redis-pass", "", "password to use to connect to the redis server")
-
-	mux sync.Mutex
 )
 
 func main() {
 	flag.Parse()
 	var (
-		logger   = logrus.New()
-		registry registry.Registry
+		logger = logrus.New()
+		r      registry.Registry
 	)
 
 	if *flDebug {
@@ -36,13 +32,14 @@ func main() {
 	}
 
 	if *flRedisAddr != "" {
-		registry = redis.New(*flRedisAddr, *flRedisPass)
+		r = redis.New(*flRedisAddr, *flRedisPass)
 	} else {
-		registry = inmem.New()
+		r = inmem.New()
 	}
 
-	s := server.New(*flInterval, *flMinInterval, registry, logger)
-	if err := http.ListenAndServe(*flAddr, s); err != nil {
+	s := server.New(*flInterval, *flMinInterval, r, logger)
+	//  shttp.ListenAndServe(fmt.Sprintf(":%d", t.trackerConfig.port), t.mux, nil)
+	if err := shttp.ListenAndServe(*flAddr, s, nil); err != nil {
 		log.Fatal(err)
 	}
 }
