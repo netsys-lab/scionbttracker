@@ -1,17 +1,32 @@
-## go based HTTP simple bittorrent tracker
+# SCION Bittorrent Tracker
+
+Implementation of a Bittorrent Tracker for use in a SCION Network.
+[SCION](https://www.scion-architecture.net/)
+[Bittorrent Client Implementation](https://github.com/martenwallewein/torrent)
+
+This repository is a fork of [crosbymichael/tracker](https://github.com/crosbymichael/tracker)
+
+## Features
+- HTTP based tracker
+- inmemory and redis Registry
+
+## Differences to a "normal" bittorrent tracker
+- Peers hold information about their SCION ISD (Isolation Domain) and AS (Autonomous System)
+- HTTP 3 / QUIC based communication 
+
+## Go based HTTP simple bittorrent tracker
 
 You can use this by import the `server` package that implements `http.Handler` to use in your own 
 applications or use the binary `bttracker` to create a standalone bittorrent tracker.
 
-
 You have the option to use an in-memory registry for keeping peer data or using a redis server for storing the 
 peer data.  You can always implement your own registry as well.
 
-### btracker
+### Usage
 
 ```bash
-bttracker -h
-Usage of bttracker:
+scionbttracker -h
+Usage of scionbttracker:
     -addr=":9090": address of the tracker
     -debug=false: enable debug mode for logging
     -interval=120: interval for when Peers should poll for new peers
