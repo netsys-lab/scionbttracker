@@ -38,7 +38,6 @@ func main() {
 	}
 
 	s := server.New(*flInterval, *flMinInterval, r, logger)
-	//  shttp.ListenAndServe(fmt.Sprintf(":%d", t.trackerConfig.port), t.mux, nil)
 	if err := shttp.ListenAndServe(*flAddr, s, nil); err != nil {
 		log.Fatal(err)
 	}

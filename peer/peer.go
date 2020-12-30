@@ -6,6 +6,10 @@ import (
 	"encoding/hex"
 	"fmt"
 	"github.com/jackpal/bencode-go"
+	"github.com/scionproto/scion/go/lib/addr"
+	"github.com/scionproto/scion/go/lib/snet"
+	"github.com/sirupsen/logrus"
+	"net"
 	"net/http"
 	"strconv"
 )
@@ -45,18 +49,27 @@ func BTDeserialize(d []byte) (*Peer, error) {
 // PeerFromRequest returns a peer from an http GET request
 func PeerFromRequest(r *http.Request) (*Peer, error) {
 	v := r.URL.Query()
-
-	//port, err := strconv.Atoi(v.Get("port"))
-	//if err != nil {
-	//	return nil, err
-	//}
+	fmt.Printf("FINDME: hello\n")
+	port, err := strconv.Atoi(v.Get("port"))
+	if err != nil {
+		return nil, err
+	}
 
 	left, err := strconv.ParseUint(v.Get("left"), 10, 64)
 	if err != nil {
 		return nil, err
 	}
 
+	ia, ip, err := getIaAndIpFromRequest(r)
+	if err != nil {
+		logrus.Debugln("could not parse scion ia / ip from request")
+		return nil, err
+	}
+
 	p := &Peer{
+		IP:        ip.String(),
+		IA:        ia.String(),
+		Port:      port,
 		ID:        v.Get("peer_id"),
 		InfoHash:  v.Get("info_hash"),
 		Key:       v.Get("key"),
@@ -64,6 +77,14 @@ func PeerFromRequest(r *http.Request) (*Peer, error) {
 	}
 
 	return p, nil
+}
+
+func getIaAndIpFromRequest(r *http.Request) (*addr.IA, *net.IP, error) {
+	udpAddr, err := snet.ParseUDPAddr(r.RemoteAddr)
+	if err != nil {
+		return nil, nil, err
+	}
+	return &udpAddr.IA, &udpAddr.Host.IP, nil
 }
 
 // Hash returns a sha1 of the peer ID and InfoHash
