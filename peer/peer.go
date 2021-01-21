@@ -49,7 +49,6 @@ func BTDeserialize(d []byte) (*Peer, error) {
 // PeerFromRequest returns a peer from an http GET request
 func PeerFromRequest(r *http.Request) (*Peer, error) {
 	v := r.URL.Query()
-	fmt.Printf("FINDME: hello\n")
 	port, err := strconv.Atoi(v.Get("port"))
 	if err != nil {
 		return nil, err
