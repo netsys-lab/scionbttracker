@@ -1,4 +1,4 @@
-module gitlab.com/clemens97/scionbttracker/server
+module github.com/netsys-lab/scionbttracker
 
 go 1.14
 

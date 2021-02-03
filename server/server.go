@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"github.com/sirupsen/logrus"
-	"gitlab.com/clemens97/scionbttracker/peer"
-	"gitlab.com/clemens97/scionbttracker/registry"
+	"github.com/netsys-lab/scionbttracker/peer"
+	"github.com/netsys-lab/scionbttracker/registry"
 )
 
 const bencodingFormat = "d8:intervali%de12:min intervali%de8:completei%de10:incompletei%de5:peersl%see"

@@ -4,10 +4,10 @@ import (
 	"flag"
 	"github.com/netsec-ethz/scion-apps/pkg/shttp"
 	"github.com/sirupsen/logrus"
-	"gitlab.com/clemens97/scionbttracker/registry"
-	"gitlab.com/clemens97/scionbttracker/registry/inmem"
-	"gitlab.com/clemens97/scionbttracker/registry/redis"
-	"gitlab.com/clemens97/scionbttracker/server"
+	"github.com/netsys-lab/scionbttracker/registry"
+	"github.com/netsys-lab/scionbttracker/registry/inmem"
+	"github.com/netsys-lab/scionbttracker/registry/redis"
+	"github.com/netsys-lab/scionbttracker/server"
 	"log"
 )
 
