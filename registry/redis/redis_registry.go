@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/garyburd/redigo/redis"
-	"gitlab.com/clemens97/scionbttracker/peer"
-	"gitlab.com/clemens97/scionbttracker/registry"
+	"github.com/netsys-lab/scionbttracker/peer"
+	"github.com/netsys-lab/scionbttracker/registry"
 )
 
 type RedisRegistry struct {

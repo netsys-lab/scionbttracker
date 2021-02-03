@@ -1,4 +1,4 @@
-module gitlab.com/clemens97/scionbttracker/peer
+module github.com/netsys-lab/scionbttracker/peer
 
 go 1.14
 

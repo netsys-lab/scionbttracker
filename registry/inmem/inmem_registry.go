@@ -4,8 +4,8 @@ import (
 	"sync"
 	"time"
 
-	"gitlab.com/clemens97/scionbttracker/peer"
-	"gitlab.com/clemens97/scionbttracker/registry"
+	"github.com/netsys-lab/scionbttracker/peer"
+	"github.com/netsys-lab/scionbttracker/registry"
 )
 
 // InMemRegistry implements a registry that stores Peer information in memory

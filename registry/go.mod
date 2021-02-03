@@ -1,5 +1,5 @@
-module gitlab.com/clemens97/scionbttracker/registry
+module github.com/netsys-lab/scionbttracker/registry
 
 go 1.14
 
-require gitlab.com/clemens97/scionbttracker/peer v0.1.0
+require github.com/netsys-lab/scionbttracker/peer v0.1.1
