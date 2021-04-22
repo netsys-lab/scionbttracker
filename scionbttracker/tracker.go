@@ -3,11 +3,11 @@ package main
 import (
 	"flag"
 	"github.com/netsec-ethz/scion-apps/pkg/shttp"
-	"github.com/sirupsen/logrus"
 	"github.com/netsys-lab/scionbttracker/registry"
 	"github.com/netsys-lab/scionbttracker/registry/inmem"
 	"github.com/netsys-lab/scionbttracker/registry/redis"
 	"github.com/netsys-lab/scionbttracker/server"
+	"github.com/sirupsen/logrus"
 	"log"
 )
 
@@ -38,6 +38,7 @@ func main() {
 	}
 
 	s := server.New(*flInterval, *flMinInterval, r, logger)
+	logger.Debugf("attempting to listen on - %s", *flAddr)
 	if err := shttp.ListenAndServe(*flAddr, s, nil); err != nil {
 		log.Fatal(err)
 	}
